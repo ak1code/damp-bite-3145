@@ -4,14 +4,16 @@ import { useContext } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import Navbar from '../Componant/Navbar';
 
+
+
 const Home = () => {
 
   const {user}=useContext(AuthContext);
      
   return (
     <div >
-      
-     <h1>Welcome to Pill Reminder {user.authState? user.name:""}</h1>
+     
+     {/* <h1>Welcome to Pill Reminder {user.authState? user.name:""}</h1>
      <section className={styles.featuresSection}>
       <div className={styles.feature}>
         <i className="fas fa-clock fa-3x"></i>
@@ -33,7 +35,7 @@ const Home = () => {
         <h3>Multiple User Support</h3>
         <p>Our pill reminder app allows multiple users to manage their medication schedules on a single platform.</p>
       </div>
-    </section>
+    </section> */}
     </div>
   );
 };
