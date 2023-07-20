@@ -1,11 +1,17 @@
 import React from 'react';
 import styles from './Home.module.css';
-
+import { useContext } from 'react';
+import { AuthContext } from '../AuthContext/AuthContext';
+import Navbar from '../Componant/Navbar';
 
 const Home = () => {
+
+  const {user}=useContext(AuthContext);
+     
   return (
     <div >
-     <h1>Welcome to Pill Reminder</h1>
+      
+     <h1>Welcome to Pill Reminder {user.authState? user.name:""}</h1>
      <section className={styles.featuresSection}>
       <div className={styles.feature}>
         <i className="fas fa-clock fa-3x"></i>

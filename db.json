@@ -17,6 +17,12 @@
         "name": "Walliw Wilstead",
         "email": "wwilstead2@tripadvisor.com",
         "password":123
+      },
+      {
+        "id": 4,
+        "name": "Akshay Ramoliya",
+        "email": "akshay.ramoliya9@gmail.com",
+        "password":123
       }
      
     ]
