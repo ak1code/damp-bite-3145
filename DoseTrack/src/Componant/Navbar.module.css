@@ -1,0 +1,33 @@
+/* Example styles for the Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    justify-content: space-around;
+  }
+  
+  .navbar a {
+    margin-right: 20px;
+  }
+  
+  /* Example styles for the Drawer */
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .drawer h3 {
+    margin-bottom: 10px;
+  }
+  
+  .drawer button {
+    margin-top: 10px;
+  }
+  

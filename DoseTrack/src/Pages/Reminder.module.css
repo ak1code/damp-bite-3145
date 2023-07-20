@@ -1,7 +1,8 @@
 /* CreateReminder.module.css */
 
 .createReminder {
-    margin-top: 20px;
+    margin: 20px;
+    width: 40%;
   }
   
   .createReminder h2 {

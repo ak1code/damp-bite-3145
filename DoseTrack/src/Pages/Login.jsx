@@ -1,11 +1,18 @@
-import React, { useReducer } from 'react';
+import React, { useReducer,useEffect,useState } from 'react';
 import styles from './Login.module.css';
+import axios from "axios";
+import { useContext } from 'react';
+import { AuthContext } from '../AuthContext/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 const initialState = {
   email: '',
   password: '',
   name: '',
   confirmPassword: '',
+  data:[],
+  loading:false,
+  error:false
 };
 
 const reducer = (state, action) => {
@@ -17,6 +24,12 @@ const reducer = (state, action) => {
       };
     case 'RESET_FIELDS':
       return initialState;
+       
+       case "loading":{
+        return {
+          ...state,loading:true
+        }
+       }
     default:
       return state;
   }
@@ -24,20 +37,79 @@ const reducer = (state, action) => {
 
 const Login = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [data,setData]=useState([]);
+  const {user,login,logout}=useContext(AuthContext);
+  
 
-  const handleSubmit = (e) => {
+  useEffect(()=>{
+  const  fetchData=async()=>{
+    dispatch({type:"loading"})
+    try {
+    let res= await axios.get("https://api-server-mejj.onrender.com/users")
+      // console.log(res.data)
+     setData(res.data)
+    } catch (error) {
+     console.log(error)
+    }
+  }
+  fetchData()
+  },[])
+
+  console.log(data)
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    
+    if(state.isRegistering==false||state.isRegistering==undefined){
+        let data1=data.find((ele)=>{
+         return ele.email==state.email&&ele.password==state.password
+        })
+      
+        if(data1){
+             data.find((ele)=>{
+             if(ele.email==state.email&&ele.password==state.password){
+              login(ele.name,ele.email)
+             }
+           })
+          
+          console.log("your are logedin")
+        }else{
+          console.log("something are wrong")
+        }
+    }
+    else{
+      const postData=async()=>{
+
+       
+       try {
+        await axios.post("https://api-server-mejj.onrender.com/users",{
+        name:state.name,
+        password:state.password,
+        email:state.email
+       });
+        
+       } catch (error) {
+        console.log(error)
+       }
+      }
+         postData();
+    }
+
+    
+    
 
     // Perform login or registration logic here, such as sending a request to the server
 
     // Reset the form fields
     dispatch({ type: 'RESET_FIELDS' });
+    
   };
-
+ 
   const toggleForm = () => {
     dispatch({ type: 'RESET_FIELDS' });
     dispatch({ type: 'SET_FIELD', field: 'isRegistering', value: !state.isRegistering });
   };
+  
+  
 
   const handleChange = (e) => {
     dispatch({ type: 'SET_FIELD', field: e.target.id, value: e.target.value });
@@ -45,11 +117,17 @@ const Login = () => {
 
   const { email, password, name, confirmPassword, isRegistering } = state;
 
+  // console.log(isRegistering)
+  // console.log(state)
   const checkPasswordStrength = () => {
     // Implement your password strength logic here
     // Return a value (e.g., "weak", "medium", "strong") based on the password strength
     // You can use external libraries or custom functions to evaluate the password strength
   };
+
+ if(user.authState){
+  return <Navigate to="/" />
+ }
 
   return (
     <div className={styles.loginContainer}>

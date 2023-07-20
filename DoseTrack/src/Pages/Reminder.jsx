@@ -41,6 +41,8 @@ const Reminder = () => {
     const { name, value } = e.target;
     dispatch({ type: `SET_${name.toUpperCase()}`, payload: value });
   };
+  
+  console.log(state)
 
   return (
     <div className={styles.createReminder}>
@@ -51,7 +53,7 @@ const Reminder = () => {
           <input
             type="text"
             id="medicationName"
-            name="medicationName"
+            name="medication_Name"
             value={state.medicationName}
             onChange={handleChange}
           />
@@ -59,7 +61,7 @@ const Reminder = () => {
         <div className={styles.formGroup}>
           <label htmlFor="dosage">Dosage:</label>
           <input
-            type="text"
+            type="number"
             id="dosage"
             name="dosage"
             value={state.dosage}
@@ -69,7 +71,7 @@ const Reminder = () => {
         <div className={styles.formGroup}>
           <label htmlFor="frequency">Frequency:</label>
           <input
-            type="text"
+            type="number"
             id="frequency"
             name="frequency"
             value={state.frequency}
@@ -81,7 +83,7 @@ const Reminder = () => {
           <input
             type="text"
             id="notificationTime"
-            name="notificationTime"
+            name="notification_Time"
             value={state.notificationTime}
             onChange={handleChange}
           />
