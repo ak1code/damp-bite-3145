@@ -23,6 +23,20 @@
         "name": "Akshay Ramoliya",
         "email": "akshay.ramoliya9@gmail.com",
         "password":123
+      },
+      {
+        "id": 5,
+        "name": "akash",
+        "email": "akshay.ramoliya9@gmail.com",
+        "password":123
+      }
+     
+    ],
+    "alarms": [
+      {
+        "id": 1,
+        "name": "dolo",
+        "userid":4
       }
      
     ]

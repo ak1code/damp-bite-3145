@@ -8,12 +8,12 @@ import Navbar from '../Componant/Navbar';
 
 const Home = () => {
 
-  const {user}=useContext(AuthContext);
+  const {user,data}=useContext(AuthContext);
      
   return (
     <div >
      
-     {/* <h1>Welcome to Pill Reminder {user.authState? user.name:""}</h1>
+     <h1>Welcome to Pill Reminder {user.authState? user.name:""}</h1>
      <section className={styles.featuresSection}>
       <div className={styles.feature}>
         <i className="fas fa-clock fa-3x"></i>
@@ -35,7 +35,20 @@ const Home = () => {
         <h3>Multiple User Support</h3>
         <p>Our pill reminder app allows multiple users to manage their medication schedules on a single platform.</p>
       </div>
-    </section> */}
+    </section>
+
+    {data.length > 0 && (
+        <div>
+          <h2>Reminder Cards</h2>
+          {data.map((card) => (
+            <div key={card.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+              <h3>Medication: {card.medicationName}</h3>
+              <p>Alarm Time: {card.notificationTime}</p>
+              {/* <button onClick={() => handleDeleteCard(card.id)}>Delete</button> */}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

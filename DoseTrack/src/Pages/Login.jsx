@@ -42,6 +42,9 @@ const Login = () => {
   
 
   useEffect(()=>{
+    fetchData()
+  },[])
+
   const  fetchData=async()=>{
     dispatch({type:"loading"})
     try {
@@ -52,8 +55,7 @@ const Login = () => {
      console.log(error)
     }
   }
-  fetchData()
-  },[])
+  
 
   console.log(data)
   const handleSubmit = async(e) => {
@@ -67,7 +69,7 @@ const Login = () => {
         if(data1){
              data.find((ele)=>{
              if(ele.email==state.email&&ele.password==state.password){
-              login(ele.name,ele.email)
+              login(ele.name,ele.email,ele.id)
              }
            })
           
@@ -77,24 +79,22 @@ const Login = () => {
         }
     }
     else{
-      const postData=async()=>{
-
-       
+    
        try {
         await axios.post("https://api-server-mejj.onrender.com/users",{
         name:state.name,
         password:state.password,
         email:state.email
        });
-        
+       fetchData()
        } catch (error) {
         console.log(error)
        }
-      }
-         postData();
+      
+        
     }
 
-    
+    console.log(user.id)
     
 
     // Perform login or registration logic here, such as sending a request to the server

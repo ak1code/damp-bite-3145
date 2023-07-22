@@ -9,20 +9,26 @@ export const AuthContextProvider = ({children}) => {
     const [user,setUser]=useState({
         authState:false,
         name:"",
-        email:""
+        email:"",
+        id:""
     });
 
-    const login=(name,email)=>{
-        setUser({authState:true,name:name,email:email})  
+    const [data,setData]=useState([]);
+
+    const login=(name,email,id)=>{
+        setUser({authState:true,name:name,email:email,id:id})  
     }
 
     const logout=()=>{
       setUser({authState:false,name:"",email:""})
     }
-
+    
+    const alarmData=(data)=>{
+      setData(data)
+    }
 
     
     
- return (<AuthContext.Provider value={{user,login,logout}} >{children}</AuthContext.Provider>)
+ return (<AuthContext.Provider value={{user,login,logout,alarmData,data}} >{children}</AuthContext.Provider>)
      
     };
