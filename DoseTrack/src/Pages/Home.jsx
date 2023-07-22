@@ -8,7 +8,7 @@ import Navbar from '../Componant/Navbar';
 
 const Home = () => {
 
-  const {user}=useContext(AuthContext);
+  const {user,data}=useContext(AuthContext);
      
   return (
     <div >
@@ -36,6 +36,19 @@ const Home = () => {
         <p>Our pill reminder app allows multiple users to manage their medication schedules on a single platform.</p>
       </div>
     </section>
+
+    {data.length > 0 && (
+        <div>
+          <h2>Reminder Cards</h2>
+          {data.map((card) => (
+            <div key={card.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+              <h3>Medication: {card.medicationName}</h3>
+              <p>Alarm Time: {card.notificationTime}</p>
+              {/* <button onClick={() => handleDeleteCard(card.id)}>Delete</button> */}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
