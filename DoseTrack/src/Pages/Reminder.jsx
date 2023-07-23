@@ -4,49 +4,50 @@ import axios from 'axios';
 import { AuthContext } from '../AuthContext/AuthContext';
 
 
-const API_BASE_URL = 'https://api-server-mejj.onrender.com'; // Replace with your actual API base URL
+const API_BASE_URL = 'https://api-server-mejj.onrender.com'; 
 
 const Remainder = () => {
   const { alarmData,user } = useContext(AuthContext);
-  const [id,setId]=useState("");
-  useEffect(()=>{
-     setId(user.id)
-  },[])
   
-       
- console.log(id)
+
+
   const [currentTime, setCurrentTime] = useState('');
   const [medicationName, setMedicationName] = useState('');
   const [notificationTime, setNotificationTime] = useState('');
-  const [reminderCards, setReminderCards] = useState([]);
   const [alarms, setAlarms] = useState([]);
   const [alarmMessage, setAlarmMessage] = useState('');
-  const [alarmTimes, setAlarmTimes] = useState([]); // Add this line
-
-  const clock = setInterval(() => setCurrentTime(new Date().toLocaleTimeString('en-US', { hour12: false }).substring(0,5)), 1000);
+  const [alarmTimes, setAlarmTimes] = useState([]); 
+  const [id,setId]=useState("");
+  console.log(id)
   
-  useEffect(() => {
-
-    fetchAlarms();
-    // checkAlarmClock()
-
-    // Fetch the alarm data from the API
-   
     
+    useEffect(() => {
+      setId(user.id);
+    }, [user]);
+    
+    useEffect(() => {
+      fetchAlarms();
 
-    return () => {
-      clearInterval(clock);
-      clearInterval(interval);
-    };
   }, [id]);
 
-  // useEffect(()=>{
-  //   checkAlarmClock()
-  // },[alarms])
+  useEffect(()=>{
+     const clock=setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString('en-US', { hour12: false }).substring(0, 5));
+    }, 1000);
+
+    const combinedInterval = setInterval(() => {
+      checkAlarmClock();
+    }, 60000);
+
+    return ()=>{
+      clearInterval(clock)
+      clearInterval(combinedInterval);
+    }
+  },[])
 
   const fetchAlarms = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/alarms?userid=${id}`); // Replace with your actual API endpoint for getting alarm data
+      const response = await axios.get(`${API_BASE_URL}/alarms?userid=${id}`); 
       setAlarms(response.data);
     } catch (error) {
       console.error('Error fetching alarm data:', error);
@@ -70,25 +71,13 @@ const Remainder = () => {
         notificationTime: inputAlarmTimeModified,
       };
 
-      // Save the alarm data to the API
+      
       try {
-        const response = await axios.post("https://api-server-mejj.onrender.com/alarms", alarmData); // Replace with your actual API endpoint for creating an alarm
-        //const savedAlarm = response.data;
-        
+         await axios.post("https://api-server-mejj.onrender.com/alarms", alarmData); 
         setMedicationName('');
         setNotificationTime('');
         alert(`Alarm set for ${medicationName} at ${inputAlarmTimeModified}`);
 
-        // Create a new reminder card
-        // const newCard = {
-        //   id: savedAlarm.id,
-        //   medicationName,
-        //   notificationTime: inputAlarmTimeModified,
-        // };
-        // setReminderCards([...reminderCards, newCard]);
-
-        // Update the alarmTimes array with the new alarm time
-        // setAlarmTimes([...alarmTimes, inputAlarmTimeModified]);
         fetchAlarms()
       } catch (error) {
         console.error('Error saving alarm data:', error);
@@ -109,9 +98,9 @@ const Remainder = () => {
       setAlarmMessage(`Your alarms are set for ${alarmTimes.join(', ')}.`);
       const currentTimeWithSeconds = new Date().toLocaleTimeString('en-US', { hour12: false }).substring(0,5);
       alarms.forEach((alarmTime) => {
-        console.log("current Time:"+currentTimeWithSeconds)
-        console.log("NotificationTime:"+alarmTime.notificationTime.substring(0,5));
-        console.log("are equal :"+currentTimeWithSeconds === alarmTime.notificationTime.substring(0,5))
+        // console.log("current Time:"+currentTimeWithSeconds)
+        // console.log("NotificationTime:"+alarmTime.notificationTime.substring(0,5));
+        // console.log("are equal :"+currentTimeWithSeconds === alarmTime.notificationTime.substring(0,5))
         if (currentTimeWithSeconds === alarmTime.notificationTime.substring(0,5)) {
           handleAlarmTrigger(alarmTime);
         }
@@ -119,27 +108,27 @@ const Remainder = () => {
     }
   };
   const interval = setInterval(checkAlarmClock, 60000);
-  const handleDeleteCard = (id) => {
-    // Remove the card with the given ID from the reminderCards array
-    const updatedCards = reminderCards.filter((card) => card.id !== id);
-    setReminderCards(updatedCards);
+  const handleDeleteCard = async(id) => {
 
-    // Remove the associated alarm time from alarmTimes array
-    const cardToDelete = reminderCards.find((card) => card.id === id);
-    const updatedAlarmTimes = alarmTimes.filter((time) => time !== cardToDelete.notificationTime);
-    setAlarmTimes(updatedAlarmTimes);
+      try {
+        await axios.delete(`https://api-server-mejj.onrender.com/alarms/${id}`);
+        fetchAlarms()
+      } catch (error) {
+        console.log(error)
+      }
+   
   };
 
-  // Implement the alarm trigger logic here
+  
   const handleAlarmTrigger = (alarmTime) => {
     alert(`Time to take your medication set for ${alarmTime.notificationTime}!`);
   };
-// console.log(alarms)
+
   return (
     <div>
-      <h1>React Alarm Clock</h1>
+      <h1>Take Control of Your Health: Set Pill Reminders Here</h1>
       <h2>It is {currentTime}</h2>
-      <h2>{alarmMessage}</h2> {/* Display alarmMessage here */}
+      <h2>{alarmMessage}</h2> 
       <form onSubmit={handleFormSubmit}>
         <div>
           <label htmlFor="medicationName">Medication Name:</label>
