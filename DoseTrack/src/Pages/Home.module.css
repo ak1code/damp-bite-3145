@@ -1,39 +1,104 @@
-/* Features.module.css */
+/* Home.module.css */
 
+/* Black and Blue color scheme */
+:root {
+  --primary-color: #000; /* Black */
+  --secondary-color: #007bff; /* Blue */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--primary-color);
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Styling for the features section */
 .featuresSection {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 50px;
-  }
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:30px
   
-  .feature {
-    width: 300px;
-    margin: 20px;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .feature:hover {
-    transform: translateY(-5px);
-  }
-  
-  .feature i {
-    color: #4caf50;
-    margin-bottom: 10px;
-  }
-  
-  .feature h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .feature p {
-    font-size: 14px;
-    color: #777;
-  }
-  
+}
+
+.feature {
+  text-align: center;
+  width: 50%;
+  padding: 20px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-color);
+  color: #fff;
+  animation: fadeInUp 1s ease;
+}
+
+.feature i {
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+.feature h3 {
+  margin: 0;
+  color: var(--secondary-color);
+}
+
+/* Styling for the Reminder Cards */
+.reminderCard {
+  border: 1px solid var(--secondary-color);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: #fff;
+  animation: fadeInUp 1s ease;
+}
+
+/* Update the existing class name */
+.reminderCard h3 {
+  margin: 0;
+  color: var(--secondary-color);
+}
+
+.reminderCard p {
+  margin: 5px 0;
+}
+
+/* Styling for the card section */
+.cardSection {
+  margin-top: 40px;
+}
+
+.cardSection h2 {
+  text-align: center;
+  color: var(--secondary-color);
+}
+
+/* Add a button style */
+.cardSection button {
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cardSection button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}

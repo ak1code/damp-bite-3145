@@ -1,66 +1,109 @@
+/* Login.module.css */
+
+/* Black and Blue color scheme */
+:root {
+  --primary-color: #000; /* Black */
+  --secondary-color: #007bff; /* Blue */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Login container */
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--primary-color);
+}
+
+/* Login form */
 .loginForm {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease;
+  max-width: 400px;
+  width: 100%;
+}
+
+.loginHeading {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.label {
+  color: var(--secondary-color);
+  margin-bottom: 5px;
+}
+
+.input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.passwordStrength {
+  display: flex;
+  justify-content: space-between;
+  color: var(--secondary-color);
+  font-size: 14px;
+}
+
+.button {
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+.toggleFormText {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.toggleFormLink {
+  background: none;
+  border: none;
+  color: var(--secondary-color);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 480px) {
+  .loginForm {
     max-width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    animation: fadeIn 0.5s ease-in-out;
   }
-  
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .loginFormHeading {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .formGroup {
-    margin-bottom: 15px;
-  }
-  
-  .label {
-    display: block;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s ease-in-out;
-  }
-  
-  .input:focus {
-    outline: none;
-    border-color: #4caf50;
-  }
-  
-  .button {
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 4px;
-    background-color: #4caf50;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .button:hover {
-    background-color: #45a049;
-  }
-  
+}
