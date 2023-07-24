@@ -1,47 +1,117 @@
-/* CreateReminder.module.css */
 
-.createReminder {
-    margin: 20px;
-    width: 40%;
+:root {
+  --primary-color: #000; 
+  --secondary-color: #007bff; 
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--primary-color);
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .createReminder h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .reminderForm {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .formGroup {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input[type='text'] {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .submitButton {
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 4px;
-    background-color: #4caf50;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .submitButton:hover {
-    background-color: #45a049;
-  }
-  
+}
+
+/* Reminder container */
+.reminderContainer {
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease;
+}
+
+.reminderContainer h2 {
+  color: var(--secondary-color);
+}
+
+.reminderContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reminderContainer label {
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+.reminderContainer input[type='text'],
+.reminderContainer input[type='time'] {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.reminderContainer button {
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reminderContainer button:hover {
+  background-color: #0056b3; 
+}
+
+
+.reminderCardContainer {
+  margin-top: 40px;
+}
+
+.reminderCardContainer h2 {
+  text-align: center;
+  color: var(--secondary-color);
+}
+
+
+.reminderCard {
+  border: 1px solid var(--secondary-color);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: #fff;
+  animation: fadeInUp 1s ease;
+}
+
+.reminderCard h3 {
+  margin: 0;
+  color: var(--secondary-color);
+}
+
+.reminderCard p {
+  margin: 5px 0;
+}
+
+
+.reminderCard button {
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reminderCard button:hover {
+  background-color: #0056b3; 
+}

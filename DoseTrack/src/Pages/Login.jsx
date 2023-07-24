@@ -90,16 +90,9 @@ const Login = () => {
        } catch (error) {
         console.log(error)
        }
-      
-        
     }
-
     console.log(user.id)
-    
-
-    // Perform login or registration logic here, such as sending a request to the server
-
-    // Reset the form fields
+  
     dispatch({ type: 'RESET_FIELDS' });
     
   };
@@ -117,12 +110,9 @@ const Login = () => {
 
   const { email, password, name, confirmPassword, isRegistering } = state;
 
-  // console.log(isRegistering)
-  // console.log(state)
+  
   const checkPasswordStrength = () => {
-    // Implement your password strength logic here
-    // Return a value (e.g., "weak", "medium", "strong") based on the password strength
-    // You can use external libraries or custom functions to evaluate the password strength
+    
   };
 
  if(user.authState){
@@ -131,6 +121,9 @@ const Login = () => {
 
   return (
     <div className={styles.loginContainer}>
+      <div className={styles.logo}>
+        <img className={styles.logoImage} src='../../Image/DoseTrack.png' />
+      </div>
       <div className={styles.loginForm}>
         <h2 className={styles.loginHeading}>{isRegistering ? 'Register' : 'Login'}</h2>
         <form className={styles.form} onSubmit={handleSubmit}>

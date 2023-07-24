@@ -14,6 +14,7 @@ export const AuthContextProvider = ({children}) => {
     });
 
     const [data,setData]=useState([]);
+    
 
     const login=(name,email,id)=>{
         setUser({authState:true,name:name,email:email,id:id})  
