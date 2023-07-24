@@ -165,7 +165,7 @@ const Remainder = () => {
     <div className={styles.reminderContainer}>
       <h1>Take Control of Your Health: Set Pill Reminders Here</h1>
       {/* <h2>It is {currentTime}</h2> */}
-      <h2>{alarmMessage}</h2> 
+      {/* <h2>{alarmMessage}</h2>  */}
       <form onSubmit={handleFormSubmit}>
         <div>
           <label htmlFor="medicineName">Medicine Name:</label>
