@@ -42,3 +42,10 @@ Creates a new reminder for a user.
 DELETE /alarms/:id
 
 Deletes a reminder with the specified ID.
+
+
+## Deployment
+
+The app is deployed on Netlify. You can access it using the following link:
+
+[Netlify App Link](https://dosetrack.netlify.app)
