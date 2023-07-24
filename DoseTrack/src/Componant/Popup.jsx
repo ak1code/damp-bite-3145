@@ -2,12 +2,17 @@
 import React from 'react';
 import styles from './Popup.module.css';
 
-const Popup = ({ message, onClose }) => {
+const Popup = ({ message, onClose,onStop }) => {
+
+  const handleClose = () => {
+    onStop(); 
+    onClose(); 
+  };
   return (
     <div className={styles.overlay}>
       <div className={styles.popup}>
         <p>{message}</p>
-        <button onClick={onClose}>Close</button>
+        <button onClick={handleClose}>Close</button>
       </div>
     </div>
   );

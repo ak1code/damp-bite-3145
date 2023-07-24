@@ -1,17 +1,16 @@
-/* Navbar.module.css */
 
-/* Black and Blue color scheme */
 :root {
-  --primary-color: #000; /* Black */
-  --secondary-color: #007bff; /* Blue */
+  --primary-color: #000; 
+  --secondary-color: #007bff; 
 }
 
 body {
   font-family: Arial, sans-serif;
   color: var(--primary-color);
+ 
 }
 
-/* Animations */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -23,25 +22,29 @@ body {
   }
 }
 
-/* Navbar container */
+
 .navbarContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background-color: var(--primary-color);
+  background-color: black;
   color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 1s ease;
+  padding: 20px 100px 20px 100px;
 }
 
 .navLink {
   margin-right: 20px;
-  color: var(--secondary-color);
+  color: #007bff;
   text-decoration: none;
+ 
 }
 
-/* User name button */
+
+
+
 .userNameButton {
   background-color: var(--secondary-color);
   color: #fff;
@@ -53,10 +56,10 @@ body {
 }
 
 .userNameButton:hover {
-  background-color: #0056b3; /* Darker shade of blue on hover */
+  background-color: #0056b3; 
 }
 
-/* Drawer container */
+
 .drawerContainer {
   position: fixed;
   top: 0;
@@ -79,8 +82,9 @@ body {
   cursor: pointer;
   margin-top: 10px;
   transition: background-color 0.3s ease;
+  margin: 20px;
 }
 
 .drawerButton:hover {
-  background-color: #0056b3; /* Darker shade of blue on hover */
+  background-color: #0056b3; 
 }

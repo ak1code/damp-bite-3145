@@ -10,9 +10,9 @@ const API_BASE_URL = 'https://api-server-mejj.onrender.com';
 const Remainder = () => {
   const { alarmData,user } = useContext(AuthContext);
   
+  const [isAlarmPlaying, setAlarmPlaying] = useState(false)
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
-  const [currentTime, setCurrentTime] = useState('');
   const [medicineName, setMedicineName] = useState('');
   const [notificationTime, setNotificationTime] = useState('');
   const [alarms, setAlarms] = useState([]);
@@ -20,10 +20,23 @@ const Remainder = () => {
   const [alarmTimes, setAlarmTimes] = useState([]); 
   const [loading,setLoading]=useState(false)
   const [id,setId]=useState("");
+  const [audioObject, setAudioObject] = useState(null);
 
+
+  const playAlarmSound = () => {
+    const audio = new Audio("../../AlarmSound/rington.mp3");
+    audio.play();
+    setAudioObject(audio)
+  };
 
   console.log(id)
-  
+
+      useEffect(() => {
+        if (!isPopupOpen && isAlarmPlaying) {
+          setAlarmPlaying(false);
+        }
+      }, [isPopupOpen, isAlarmPlaying]);
+      
     
     useEffect(() => {
       setId(user.id);
@@ -32,22 +45,10 @@ const Remainder = () => {
     useEffect(() => {
       fetchAlarms();
 
-  }, [id]);
-
-  useEffect(()=>{
-     const clock=setInterval(() => {
-      setCurrentTime(new Date().toLocaleTimeString('en-US', { hour12: false }).substring(0, 5));
-    }, 1000);
-
-  
-    return ()=>{
-      clearInterval(clock)
-      
-    }
-  },[]);
+    }, [id]);
 
 
-  useEffect(()=>{
+   useEffect(()=>{
       
     const combinedInterval = setInterval(() => {
       checkAlarmClock();
@@ -58,11 +59,19 @@ const Remainder = () => {
     } 
 
   },[])
+
+
+ 
   
     const handlePopupClose = () => {
       setPopupOpen(false);
     };
-
+    
+    const stopAlarmSound = () => {
+      if (audioObject) {
+        audioObject.pause();
+      }
+    };
 
   const fetchAlarms = async () => {
     setLoading(true)
@@ -99,14 +108,14 @@ const Remainder = () => {
          await axios.post("https://api-server-mejj.onrender.com/alarms", alarmData); 
         setMedicineName('');
         setNotificationTime('');
-        setPopupMessage(`Alarm set for ${medicineName} at ${inputAlarmTimeModified}`);
+        setPopupMessage(`Reminder set for ${medicineName} at ${inputAlarmTimeModified}`);
         setPopupOpen(true);
         fetchAlarms()
       } catch (error) {
         console.error('Error saving alarm data:', error);
       }
     } else {
-      alert('Please enter medication name and set time.');
+      alert('Please enter Medicine name and set time.');
     }
   };
 
@@ -115,10 +124,10 @@ const Remainder = () => {
   const checkAlarmClock = () => {
     // console.log("check alaram call")
     if (alarms.length === 0) {
-      setAlarmMessage('Please set your alarm.');
+      setAlarmMessage('Please set your Reminder.');
     } else {
        console.log("alaram lenght:"+alarms.length)
-      setAlarmMessage(`Your alarms are set for ${alarmTimes.join(', ')}.`);
+      setAlarmMessage(`Your Reminder are set for ${alarmTimes.join(', ')}.`);
       const currentTimeWithSeconds = new Date().toLocaleTimeString('en-US', { hour12: false }).substring(0,5);
       alarms.forEach((alarmTime) => {
         // console.log("current Time:"+currentTimeWithSeconds)
@@ -130,7 +139,7 @@ const Remainder = () => {
       });
     }
   };
-  // const interval = setInterval(checkAlarmClock, 60000);
+  const interval = setInterval(checkAlarmClock, 60000);
   const handleDeleteCard = async(id) => {
 
       try {
@@ -144,8 +153,10 @@ const Remainder = () => {
 
   
   const handleAlarmTrigger = (alarmTime) => {
-    setPopupMessage(`Time to take your medication set for ${alarmTime.notificationTime}!`);
+    setPopupMessage(`Time to take your Medicine set for ${alarmTime.notificationTime}!`);
     setPopupOpen(true);
+    setAlarmPlaying(true); 
+    playAlarmSound();
   };
 
 
@@ -153,11 +164,11 @@ const Remainder = () => {
   return (
     <div className={styles.reminderContainer}>
       <h1>Take Control of Your Health: Set Pill Reminders Here</h1>
-      <h2>It is {currentTime}</h2>
+      {/* <h2>It is {currentTime}</h2> */}
       <h2>{alarmMessage}</h2> 
       <form onSubmit={handleFormSubmit}>
         <div>
-          <label htmlFor="medicationName">Medication Name:</label>
+          <label htmlFor="medicineName">Medicine Name:</label>
           <input
             type="text"
             id="medicineName"
@@ -181,18 +192,19 @@ const Remainder = () => {
 
       {alarms.length > 0 && (
         <div className={styles.reminderCardContainer}>
+          {loading && <h1>Loading....</h1>}
           <h2>Reminder Cards</h2>
           {alarms.map((card) => (
             <div key={card.id} className={styles.reminderCard}>
               <h3>Medicine: {card.medicineName}</h3>
-              <p>Alarm Time: {card.notificationTime}</p>
+              <p>Reminder Time: {card.notificationTime}</p>
               <button onClick={() => handleDeleteCard(card.id)}>Delete</button>
             </div>
           ))}
         </div>
       )}
-      {/* Render the popup when isPopupOpen is true */}
-      {isPopupOpen && <Popup message={popupMessage} onClose={handlePopupClose} />}
+      
+      {isPopupOpen && <Popup message={popupMessage} onClose={handlePopupClose} onStop={stopAlarmSound}  />}
     </div>
   );
 };

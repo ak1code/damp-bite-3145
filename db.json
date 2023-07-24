@@ -21,8 +21,8 @@
       {
         "id": 4,
         "name": "Akshay Ramoliya",
-        "email": "akshay.ramoliya9@gmail.com",
-        "password":123
+        "email": "akshayramolia@gmail.com",
+        "password":1234
       },
       {
         "id": 5,
@@ -33,10 +33,18 @@
      
     ],
     "alarms": [
+     
       {
-        "id": 1,
-        "name": "dolo",
-        "userid":4
+        "userid": 5,
+        "medicineName": "paracetamol",
+        "notificationTime": "10:02",
+        "id": 2 
+      },
+      {
+        "userid": 5,
+        "medicineName": "Vitamin D",
+        "notificationTime": "10:08",
+        "id": 3
       }
      
     ]

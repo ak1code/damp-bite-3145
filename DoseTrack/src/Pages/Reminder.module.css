@@ -1,9 +1,7 @@
-/* Reminder.module.css */
 
-/* Black and Blue color scheme */
 :root {
-  --primary-color: #000; /* Black */
-  --secondary-color: #007bff; /* Blue */
+  --primary-color: #000; 
+  --secondary-color: #007bff; 
 }
 
 body {
@@ -70,10 +68,10 @@ h1 {
 }
 
 .reminderContainer button:hover {
-  background-color: #0056b3; /* Darker shade of blue on hover */
+  background-color: #0056b3; 
 }
 
-/* Reminder card container */
+
 .reminderCardContainer {
   margin-top: 40px;
 }
@@ -83,7 +81,7 @@ h1 {
   color: var(--secondary-color);
 }
 
-/* Reminder card */
+
 .reminderCard {
   border: 1px solid var(--secondary-color);
   padding: 10px;
@@ -103,7 +101,7 @@ h1 {
   margin: 5px 0;
 }
 
-/* Add a button style */
+
 .reminderCard button {
   background-color: var(--secondary-color);
   color: #fff;
@@ -115,5 +113,5 @@ h1 {
 }
 
 .reminderCard button:hover {
-  background-color: #0056b3; /* Darker shade of blue on hover */
+  background-color: #0056b3; 
 }

@@ -1,21 +1,23 @@
-/* Home.module.css */
 
-/* Black and Blue color scheme */
 :root {
-  --primary-color: #000; /* Black */
-  --secondary-color: #007bff; /* Blue */
+  --primary-color: #000; 
+  --secondary-color: #007bff; 
 }
 
 body {
   font-family: Arial, sans-serif;
   color: var(--primary-color);
+  background-image: url("https://allazohealth.com/wp-content/uploads/2022/06/taking-medication-on-time.jpg");
+  background-size: cover; 
+  background-repeat: no-repeat;
 }
+
 
 h1 {
   text-align: center;
 }
 
-/* Animations */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -27,7 +29,7 @@ h1 {
   }
 }
 
-/* Styling for the features section */
+
 .featuresSection {
   display: grid;
   grid-template-columns: repeat(2,1fr);
@@ -44,6 +46,7 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: var(--primary-color);
   color: #fff;
+  height: 150px;
   animation: fadeInUp 1s ease;
 }
 
@@ -57,7 +60,7 @@ h1 {
   color: var(--secondary-color);
 }
 
-/* Styling for the Reminder Cards */
+
 .reminderCard {
   border: 1px solid var(--secondary-color);
   padding: 10px;
@@ -68,7 +71,7 @@ h1 {
   animation: fadeInUp 1s ease;
 }
 
-/* Update the existing class name */
+
 .reminderCard h3 {
   margin: 0;
   color: var(--secondary-color);
@@ -78,7 +81,7 @@ h1 {
   margin: 5px 0;
 }
 
-/* Styling for the card section */
+
 .cardSection {
   margin-top: 40px;
 }
@@ -88,7 +91,7 @@ h1 {
   color: var(--secondary-color);
 }
 
-/* Add a button style */
+
 .cardSection button {
   background-color: var(--secondary-color);
   color: #fff;
@@ -100,5 +103,5 @@ h1 {
 }
 
 .cardSection button:hover {
-  background-color: #0056b3; /* Darker shade of blue on hover */
+  background-color: #0056b3; 
 }
