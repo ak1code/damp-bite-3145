@@ -48,4 +48,4 @@ Deletes a reminder with the specified ID.
 
 The app is deployed on Vercel. You can access it using the following link:
 
-[Vercel App Link](https://dose-track-q2so4yx13-ak1code.vercel.app/login)
+[Vercel App Link](https://dose-track-q2so4yx13-ak1code.vercel.app/)
