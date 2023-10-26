@@ -46,6 +46,6 @@ Deletes a reminder with the specified ID.
 
 ## Deployment
 
-The app is deployed on Netlify. You can access it using the following link:
+The app is deployed on Vercel. You can access it using the following link:
 
-[Netlify App Link](https://dosetrack.netlify.app)
+[Vercel App Link](https://dose-track-q2so4yx13-ak1code.vercel.app/login)
